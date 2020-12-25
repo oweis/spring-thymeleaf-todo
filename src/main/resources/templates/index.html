@@ -18,7 +18,7 @@
     <h1>What you will do today?</h1>
     <div class="row">
         <div class="col-md-12">
-            <form autocomplete="off" action="#" th:action="@{/addtodo}" th:object="${todo}" method="post">
+            <form autocomplete="off" action="#" th:action="@{/todos}" th:object="${todo}" method="post">
                 <div class="row">
                     <div class="form-group col-md-8 center">
                         <input type="text" th:field="*{content}" class="form-control some-space" id="content"
@@ -40,11 +40,13 @@
                    class="table table-ow table-striped table-responsive-md">
                 <tbody>
                 <tr th:each="todo : ${todoList}">
-                    <td class="td-btn" title="Move to DONE"><a th:href="@{/todo/{id}/markdone(id=${todo.id})}"
+                    <td class="td-btn" title="Move to DONE"><a th:href="@{/todos/{id}/markdone(id=${todo.id})}"
                                                                class="btn btn-light"><i class="fas fa-check"></i></a>
                     </td>
-                    <td class="td-btn" title="Remove"><a th:href="@{/delete/{id}(id=${todo.id})}" class="btn btn-light"><i
-                            class="fas fa-trash-alt"></i></a></td>
+                    <td class="td-btn" title="Remove">
+                        <a th:href="@{/todos/{id}/delete(id=${todo.id})}" class="btn btn-light"><i
+                            class="fas fa-trash-alt"></i></a>
+                    </td>
                     <td class="td-todo" th:text="${todo.content}"></td>
                 </tr>
                 </tbody>
@@ -57,9 +59,9 @@
                    class="table table-ow table-striped table-responsive-md">
                 <tbody>
                 <tr th:each="todo : ${doneList}">
-                    <td class="td-btn" title="Move to TODO"><a th:href="@{/todo/{id}/marktodo(id=${todo.id})}"
+                    <td class="td-btn" title="Move to TODO"><a th:href="@{/todos/{id}/marktodo(id=${todo.id})}"
                                                                class="btn btn-light"><i class="fas fa-ban"></i></a></td>
-                    <td class="td-btn" title="Remove"><a th:href="@{/delete/{id}(id=${todo.id})}" class="btn btn-light"><i
+                    <td class="td-btn" title="Remove"><a th:href="@{/todos/{id}/delete(id=${todo.id})}" class="btn btn-light"><i
                             class="fas fa-trash-alt"></i></a></td>
                     <td class="td-done" th:text="${todo.content}"></td>
                 </tr>
