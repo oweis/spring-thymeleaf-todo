@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TODOS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="icon" type="image/png" th:href="@{/assets/logo.png}">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+</head>
+<body>
+
+<div class="container my-5">
+    <h1>What you will do today?</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <form autocomplete="off" action="#" th:action="@{/addtodo}" th:object="${todo}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-8 center">
+                        <input type="text" th:field="*{content}" class="form-control some-space" id="content"
+                               placeholder="I will ..." required/>
+                        <button type="submit" class="btn btn-light some-space"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>TODO</h2>
+            <table th:if="${todoList!=null and !todoList.isEmpty()}"
+                   class="table table-ow table-striped table-responsive-md">
+                <tbody>
+                <tr th:each="todo : ${todoList}">
+                    <td class="td-btn" title="Move to DONE"><a th:href="@{/markdone/{id}(id=${todo.id})}"
+                                                               class="btn btn-light"><i class="fas fa-check"></i></a>
+                    </td>
+                    <td class="td-btn" title="Remove"><a th:href="@{/delete/{id}(id=${todo.id})}" class="btn btn-light"><i
+                            class="fas fa-trash-alt"></i></a></td>
+                    <td class="td-todo" th:text="${todo.content}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <h3 th:if="${todoList ==null or todoList.isEmpty()}">Nothing to do ... for now!</h3>
+        </div>
+        <div th:switch="${doneList}" class="col-md-6">
+            <h2>DONE</h2>
+            <table th:if="${doneList != null and !doneList.isEmpty()}"
+                   class="table table-ow table-striped table-responsive-md">
+                <tbody>
+                <tr th:each="todo : ${doneList}">
+                    <td class="td-btn" title="Move to TODO"><a th:href="@{/marktodo/{id}(id=${todo.id})}"
+                                                               class="btn btn-light"><i class="fas fa-ban"></i></a></td>
+                    <td class="td-btn" title="Remove"><a th:href="@{/delete/{id}(id=${todo.id})}" class="btn btn-light"><i
+                            class="fas fa-trash-alt"></i></a></td>
+                    <td class="td-done" th:text="${todo.content}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <h3 th:if="${doneList == null or doneList.isEmpty()}">Nothing done yet!</h3>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
