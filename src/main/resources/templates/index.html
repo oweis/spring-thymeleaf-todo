@@ -40,7 +40,7 @@
                    class="table table-ow table-striped table-responsive-md">
                 <tbody>
                 <tr th:each="todo : ${todoList}">
-                    <td class="td-btn" title="Move to DONE"><a th:href="@{/markdone/{id}(id=${todo.id})}"
+                    <td class="td-btn" title="Move to DONE"><a th:href="@{/todo/{id}/markdone(id=${todo.id})}"
                                                                class="btn btn-light"><i class="fas fa-check"></i></a>
                     </td>
                     <td class="td-btn" title="Remove"><a th:href="@{/delete/{id}(id=${todo.id})}" class="btn btn-light"><i
@@ -57,7 +57,7 @@
                    class="table table-ow table-striped table-responsive-md">
                 <tbody>
                 <tr th:each="todo : ${doneList}">
-                    <td class="td-btn" title="Move to TODO"><a th:href="@{/marktodo/{id}(id=${todo.id})}"
+                    <td class="td-btn" title="Move to TODO"><a th:href="@{/todo/{id}/marktodo(id=${todo.id})}"
                                                                class="btn btn-light"><i class="fas fa-ban"></i></a></td>
                     <td class="td-btn" title="Remove"><a th:href="@{/delete/{id}(id=${todo.id})}" class="btn btn-light"><i
                             class="fas fa-trash-alt"></i></a></td>

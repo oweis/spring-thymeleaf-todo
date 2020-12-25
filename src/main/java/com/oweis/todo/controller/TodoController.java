@@ -29,7 +29,7 @@ public class TodoController {
         return "redirect:/";
     }
 
-    @GetMapping("/markdone/{id}")
+    @GetMapping("/todo/{id}/markdone")
     public String markdoneTodo(@PathVariable("id") long id, Model model) {
         Todo todo = todoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid todo Id:" + id));
@@ -38,7 +38,7 @@ public class TodoController {
         return "redirect:/";
     }
 
-    @GetMapping("/marktodo/{id}")
+    @GetMapping("/todo/{id}/marktodo")
     public String marktodoTodo(@PathVariable("id") long id, Model model) {
         Todo todo = todoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid todo Id:" + id));

@@ -22,7 +22,7 @@ public class Todo {
     public Todo(Long id, String content, boolean isDone) {
         this.id = id;
         this.content = content;
-        this.isDone= isDone;
+        this.isDone = isDone;
     }
 
     public Long getId() {
